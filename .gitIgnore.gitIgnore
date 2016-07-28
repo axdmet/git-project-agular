@@ -1,0 +1,5 @@
+# folder jogs
+logs/
+
+# txt-files
+docs/*.txt

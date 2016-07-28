@@ -1,0 +1,114 @@
+﻿ <div class="container">
+    <h1 class="well">
+        Topics 
+        <span class="label label-info">
+            {{data.length}}
+        </span>
+    </h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>TopicID</th>
+                <th>Name</th>
+                <th>Data</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="dat in data">
+       <!-- <my-customer data="dat"></my-customer> -->
+            <td>{{$index + 1}}</td>
+            <td>{{dat.TopicId}}</td>
+            <td><a href="#/topicMessage/>{{dat.TopicId}}">{{dat.Title}}</a></td>
+            <td>{{dat.DateCreated | date : "dd MMM yyyy"}}</td>
+
+            <!--<topic-info infoData="dat"></topic-info>-->
+            <!--<topic-info ordered-list="dat"></topic-info>-->
+            <!--<ordered-list list-source="items" property="price | currency" />-->
+
+            <td>
+                <button ng-click="showUpdateWindow(dat)" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal_2">Update</button>
+                <button ng-click="doDelete(dat.TopicId)" type="button" class="btn btn-danger btn-xs">Delete</button>
+            </td>
+        </tr>
+    </table>
+
+     <h1 customer ></h1>
+     
+     
+     <!-- ADD -->
+     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="# addNewTopic">New</button>
+
+<!-------------------------->
+    
+
+        <!-- Modal addNewName ADD -->
+     <div class="modal fade" id="addNewTopic" role="dialog">
+         <div class="modal-dialog">
+
+             <!-- Modal content-->
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">Topic</h4>
+                 </div>
+                 <div class="row">
+                     <br />
+                     <form role="form" novalidate name="FormAdd" class="col-md-offset-1 col-md-10">
+
+                         <div class="form-group">
+                             <div class="email controls">
+                                 <input type="text" ng-model="curretDat.title" class="form-control" ng-maxlength="10" name="userEmail" required>
+                                 <div class="error" ng-show="FormAdd.userEmail.$invalid && FormAdd.userEmail.$dirty">
+                                     {{getError(FormAdd.userEmail.$error)}}
+                                 </div>
+                             </div>
+                         </div>
+
+                         <div class="form-group btn-group">
+                             <input class="btn btn-primary" ng-click="addNewTopic()" type="submit" value="Save" data-dismiss="modal">
+                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                         </div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+<!------------------------>
+
+    <!-- Modal Update -->
+    <div class="modal fade" id="myModal_2" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal Update -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Topic</h4>
+                </div><br />
+                <div class="row"><br />
+                    <form role="form" novalidate name="FormUpdate" class="col-md-offset-1 col-md-10">
+                        <div class="form-group">
+                            <div class="email controls">
+                                <input type="text" ng-model="topicUpdateName" ng-pattern="pattern" class="form-control" name="userName" ng-maxlength="10" required>
+                                <div class="error" ng-show="FormUpdate.userName.$invalid && FormUpdate.userName.$dirty">
+                                    {{getError(FormUpdate.userName.$error)}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group btn-group">
+                            <input class="btn btn-primary" ng-click="doUpdate()" type="submit" value="save" data-dismiss="modal">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1><a href="#/topicMessage">GO TO topicMessage</a></h1>
+    <button class="btn btn-warning" ng-click="GoToTopicMessage()">GoToTopicMessage</button>
+
+</div>
+
